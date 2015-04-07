@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
 
+import java.io.IOException;
+
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 	
@@ -51,9 +53,11 @@ public class MainActivity extends FragmentActivity implements
 
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-		
+        try {
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        } catch (NullPointerException e) {
+            Log.e(TAG, e.toString());
+        }
 		mSectionsPagerAdapter = new SectionsPagerAdapter(this, 
 				getSupportFragmentManager());
 
